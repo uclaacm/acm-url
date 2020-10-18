@@ -1,0 +1,28 @@
+<!doctype html>
+
+<head>
+  <title>ACM URL</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+</head>
+
+<body>
+  <nav>
+    <div id="navbar">
+      <div id="navbar-inner">
+        <div id="nav-title" className="nav-section left">
+          <a href="https://uclaacm.com">
+
+            <img src="{{ url_for('static', filename='acm_wordmark&logo.svg') }}" id="acm-logo" alt="acm logo"></img>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="content">
+    <h1>ACM URL</h1>
+
+    {% block content %}{% endblock %}
+</body>

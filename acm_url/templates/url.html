@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="" novalidate>
+  {{ form.hidden_tag() }}
+  <label for="url">Enter long URL to make short</label>
+  {{ form.url() }}
+  <div class="line"></div>
+  {% for error in form.url.errors %}
+    <p class="error">{{ error }}</p>
+  {% endfor %}
+  <label for="vanity">Custom vanity (optional)</label>
+  <div class="vanity-input">
+    <p>https://links.uclaacm.com/</p>
+    {{ form.vanity(maxlength=100) }}
+    <div class="line"></div>
+  </div>
+  {% for error in form.vanity.errors %}
+    <p class="error">{{ error }}</p>
+  {% endfor %}
+  {% if error %}
+    <p class="error">{{ error }}</p>
+  {% endif %}
+  {{ form.submit() }}
+</form>
+</section>
+{% endblock %}

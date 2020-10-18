@@ -1,0 +1,175 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+nav {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	height: 70px;
+	width: 100%;
+	background: white;
+	box-shadow: 0px 0px 4px #E2E2E2;
+	color: #333333;
+}
+
+#navbar {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	height: 70px;
+	width: 100%;
+	background: white;
+	box-shadow: 0px 0px 4px #E2E2E2;
+	font-family: 'Poppins', 'Helvetica Neue', 'Helvetica', sans-serif;
+	color: #333333;
+}
+
+#navbar-inner {
+  width: 100%;
+  /* margin: auto; */
+  max-width: 1000px;
+}
+
+.nav-section.left {
+  float: left;
+  margin-left: 20px;
+}
+
+#acm-logo {
+  background-size: cover;
+  vertical-align: top;
+  height: 60px;
+  width: 180px;
+  margin-top: 5px;
+}
+
+a, a:visited {
+  color: inherit;
+}
+
+.content {
+	margin-top: 70px; 
+  flex: 1 0 auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  margin: 10vh 10vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 500px;
+  margin: 1rem 0;
+}
+
+.vanity-input {
+  display: inline;
+}
+
+form label {
+  margin: 0.7rem 0;
+  color: #707070;
+}
+
+form input[type="text"] {
+  margin: 0 0 1rem;
+  border-bottom: #c5c5c5 2px solid;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+}
+
+form input[type="text"]:focus {
+  border-bottom: #c5c5c5 2px solid;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+#url {
+  width: 100%;
+}
+
+form input[type="submit"], button {
+  border-radius: 5px;
+  background-color: #333333;
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  margin: 1rem 0;
+  position: relative;
+  border: none;
+}
+
+form input[type="submit"]:hover, button:hover {
+  background-color: #555555;
+}
+
+.vanity-input {
+  position: relative;
+}
+
+.vanity-input p {
+  display: inline-block;
+  margin: 0.2rem 0;
+}
+
+#vanity {
+  width: 297px;
+}
+
+.vanity-input .line {
+  left: 202px;
+}
+
+.line {
+  height: 2px; 
+  width: 1px;
+  background-color: #c5c5c5;
+  position: relative;
+  display: inline-block;
+  transition: 0.3s width ease-in-out;
+  top: -18px;
+  float: left;
+}
+
+form input[type="text"]:focus+.line {
+  width: 502px;
+  background-color: #1e6cff;
+}
+
+form #vanity:focus+.line {
+  width: 297px;
+  background-color: #1e6cff;
+}
+
+.error {
+  color: #df6f6f;
+  border-radius: 5px;
+  text-align: left;
+  margin: 0.2rem 0 0.7rem;
+}
+
+#clipboard {
+  width: 150px;
+}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Short URL created! You can now use <a href="{{ url }}">{{ url }}</a></p>
+<button onclick="copyLink(this)" onmouseout="onLeave(this)" id="clipboard">
+  Copy to Clipboard
+</button>
+<a href="{{ url_for('create') }}">
+  <button>Create Another URL</button>
+</a>
+<script>
+  function copyLink(button) {
+    var input = document.createElement('input')
+    input.id="__copyLink__";
+    input.value = "{{ url }}"; 
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand("copy");
+    input.remove();
+
+    button.innerText = "Copied!"
+  }
+  function onLeave(button) {
+    setTimeout(() => {
+      button.innerText = "Copy to Clipboard"
+    }, 1000);
+  }
+</script>
+{% endblock %}
