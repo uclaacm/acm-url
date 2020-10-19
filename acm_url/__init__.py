@@ -13,10 +13,9 @@ def create_app(test_config=None):
 
     app.permanent_session_lifetime = timedelta(minutes=30)
     
-    # TODO: replace secret key before deploy
     app.config.from_mapping(
         SECRET_KEY=os.environ.get('SECRET_KEY') or 'dev', 
-        DATABASE=os.path.join(app.instance_path, 'acm_url.sqlite'),
+        DATABASE=os.environ.get('DATABASE_URL') or os.path.join(app.instance_path, 'acm_url.sqlite'),
     )
 
     if test_config is None:
@@ -63,7 +62,7 @@ def create_app(test_config=None):
 
             if not(url.startswith('http://') or url.startswith('https://')):
                 url = 'https://' + url
-                
+
             db = get_db()
 
             if not vanity:
