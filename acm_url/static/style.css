@@ -66,7 +66,6 @@ a, a:visited {
   flex: 1 0 auto;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   display: flex;
   margin: 10vh 10vw;
 }
@@ -96,7 +95,7 @@ form input[type="text"], form input[type="password"] {
   border-left: none;
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
-  width: 498px;
+  width: 500px;
 }
 
 form input[type="text"]:focus, form input[type="password"]:focus {
@@ -133,10 +132,11 @@ form input[type="submit"]:hover, button:hover {
 .vanity-input p {
   display: inline-block;
   margin: 0.2rem 0;
+  text-align: left;
 }
 
 #vanity {
-  width: 297px;
+  width: 295px;
 }
 
 .vanity-input .line {
@@ -159,12 +159,12 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 form input[type="text"]:focus+.line, form input[type="password"]:focus+.line {
-  width: 500px;
+  width: 503px;
   background-color: #1e6cff;
 }
 
 form #vanity:focus+.line {
-  width: 297px;
+  width: 298px;
   background-color: #1e6cff;
 }
 
