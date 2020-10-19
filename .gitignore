@@ -3,8 +3,6 @@ venv/
 *.pyc
 __pycache__/
 
-migrations/
-
 .pytest_cache/
 .coverage
 htmlcov/
