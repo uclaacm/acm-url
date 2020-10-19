@@ -1,1 +1,1 @@
-web: flask init-db; gunicorn -w 4 "acm_url:create_app()"
+web: flask db upgrade; gunicorn -w 4 acm_url:app
