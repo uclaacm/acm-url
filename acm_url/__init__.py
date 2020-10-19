@@ -1,13 +1,17 @@
 import os
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, session
 from acm_url.db import get_db
 import string
 import secrets
 import re
-from acm_url.forms import CreateForm
+from acm_url.forms import CreateForm, PasswordForm
+from werkzeug.security import check_password_hash
+from datetime import timedelta
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
+
+    app.permanent_session_lifetime = timedelta(minutes=30)
     
     # TODO: replace secret key before deploy
     app.config.from_mapping(
@@ -26,9 +30,31 @@ def create_app(test_config=None):
         pass
 
     @app.route('/', methods=('GET', 'POST'))
-    def create():
-        # ask for secret password
+    def index():
+        user_id = session.get('user_id')
 
+        if user_id is None:
+            password_form = PasswordForm()            
+            if password_form.validate_on_submit():
+                pwd = password_form.password.data or ""
+                if check_password_hash(os.environ.get('OFFICER_PWD'), pwd):
+                    session.clear()
+                    session.permanent = True
+                    session['user_id'] = ''.join(secrets.choice(string.digits) for i in range(5))
+                    return redirect(url_for('create'))
+                else:
+                    session.clear()
+                    return render_template('password.html', form=password_form, error="Incorrect")
+            else:
+                return render_template('password.html', form=password_form)
+                
+        return redirect(url_for('create'))
+
+    @app.route('/create', methods=('GET', 'POST'))
+    def create():
+        if session.get('user_id') is None:
+            return redirect(url_for('index'))
+        
         create_form = CreateForm()
 
         if create_form.validate_on_submit():
@@ -41,7 +67,7 @@ def create_app(test_config=None):
                 vanity = ''.join(secrets.choice(string.ascii_lowercase + string.digits) for i in range(10))
                 old_entry = db.execute(
                     'SELECT vanity, url'
-                    ' FROM urls WHERE vanity = ?',
+                    ' FROM urls WHERE LOWER(vanity) = LOWER(?)',
                     (vanity,)
                 ).fetchone()
 
@@ -49,13 +75,15 @@ def create_app(test_config=None):
                     vanity = ''.join(secrets.choice(string.ascii_lowercase + string.digits) for i in range(12))
                     old_entry = db.execute(
                         'SELECT vanity, url'
-                        ' FROM urls WHERE vanity = ?',
+                        ' FROM urls WHERE LOWER(vanity) = LOWER(?)',
                         (vanity,)
                     ).fetchone()
-            else:                
+            else:
+                if vanity.lower() == 'create':
+                    return render_template('url.html', form=create_form, error="You cannot use this short name. Please try again.")
                 old_entry = db.execute(
                     'SELECT vanity, url'
-                    ' FROM urls WHERE vanity = ?',
+                    ' FROM urls WHERE LOWER(vanity) = LOWER(?)',
                     (vanity,)
                 ).fetchone()
                 if old_entry is not None:
@@ -76,7 +104,7 @@ def create_app(test_config=None):
         db = get_db()
         url = db.execute(
             'SELECT url, visit_count'
-            ' FROM urls WHERE vanity = ?',
+            ' FROM urls WHERE LOWER(vanity) = LOWER(?)',
             (vanity,)
         ).fetchone()
 
@@ -85,7 +113,7 @@ def create_app(test_config=None):
     
         db.execute(
             'UPDATE urls SET visit_count = ?'
-            ' WHERE vanity = ?',
+            ' WHERE LOWER(vanity) = LOWER(?)',
             (url['visit_count'] + 1, vanity)
         )
         db.commit()

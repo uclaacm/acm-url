@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, Regexp, Optional
+from wtforms.validators import DataRequired, Regexp, Optional, InputRequired
 
 class CreateForm(FlaskForm):
   vanity = StringField('Custom vanity (optional)', validators=[Optional(), Regexp('^[\w-]+$', message="Short name must only containt letters, digits, and dashes.")])
@@ -8,5 +8,5 @@ class CreateForm(FlaskForm):
   submit = SubmitField('Make URL')
 
 class PasswordForm(FlaskForm):
-  password = PasswordField('Password', validators=[DataRequired()])
+  password = PasswordField('Password', validators=[InputRequired(message="You must submit the password to create an URL.")])
   submit = SubmitField('Submit')

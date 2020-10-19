@@ -88,7 +88,7 @@ form label {
   color: #707070;
 }
 
-form input[type="text"] {
+form input[type="text"], form input[type="password"] {
   margin: 0 0 1rem;
   border-bottom: #c5c5c5 2px solid;
   border-top: none;
@@ -96,9 +96,10 @@ form input[type="text"] {
   border-left: none;
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
+  width: 500px;
 }
 
-form input[type="text"]:focus {
+form input[type="text"]:focus, form input[type="password"]:focus {
   border-bottom: #c5c5c5 2px solid;
   border-top: none;
   border-right: none;
@@ -153,7 +154,7 @@ form input[type="submit"]:hover, button:hover {
   float: left;
 }
 
-form input[type="text"]:focus+.line {
+form input[type="text"]:focus+.line, form input[type="password"]:focus+.line {
   width: 502px;
   background-color: #1e6cff;
 }
