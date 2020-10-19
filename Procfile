@@ -1,0 +1,1 @@
+web: flask db init-db; gunicorn -w 4 "acm_url:create_app()"
