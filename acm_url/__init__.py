@@ -61,6 +61,9 @@ def create_app(test_config=None):
             vanity = create_form.vanity.data
             url = create_form.url.data
 
+            if not(url.startswith('http://') or url.startswith('https://')):
+                url = 'https://' + url
+                
             db = get_db()
 
             if not vanity:
