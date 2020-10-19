@@ -1,7 +1,7 @@
 from acm_url import db
 from sqlalchemy.sql import func
 
-class Url(db.Model):
+class URL(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   vanity = db.Column(db.String(120), index=True, unique=True, nullable=False)
   url = db.Column(db.Text, nullable=False)
