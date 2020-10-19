@@ -96,7 +96,7 @@ form input[type="text"], form input[type="password"] {
   border-left: none;
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
-  width: 500px;
+  width: 498px;
 }
 
 form input[type="text"]:focus, form input[type="password"]:focus {
@@ -154,8 +154,12 @@ form input[type="submit"]:hover, button:hover {
   float: left;
 }
 
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none;
+}
+
 form input[type="text"]:focus+.line, form input[type="password"]:focus+.line {
-  width: 502px;
+  width: 500px;
   background-color: #1e6cff;
 }
 
