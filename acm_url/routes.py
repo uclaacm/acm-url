@@ -9,6 +9,8 @@ from werkzeug.security import check_password_hash
 from acm_url.schema import URL
 from sqlalchemy import func
 
+# Default endpoint. If logged in, redirect to create. Otherwise, prompt them for password. 
+# If correct, redirect to create, otherwise, stay here.
 @app.route('/', methods=('GET', 'POST'))
 def index():
     user_id = session.get('user_id')
@@ -30,6 +32,8 @@ def index():
             
     return redirect(url_for('create'))
 
+# Endpoint for creating a new vanity url. GET request returns the form.
+# POST request validates and creates the new url in the DB. 
 @app.route('/create', methods=('GET', 'POST'))
 def create():
     if session.get('user_id') is None:
@@ -67,6 +71,7 @@ def create():
 
     return render_template('url.html', form=create_form)
 
+# Endpoint for accessing a vanity url. A simple redirect to the URL on file.
 @app.route('/<vanity>')
 def vanity(vanity):
     entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
