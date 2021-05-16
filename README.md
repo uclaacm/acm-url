@@ -1,6 +1,6 @@
 # ACM URL
 
-Creates vanity URLS for ACM at UCLA with the root URL "https://links.uclaacm.com/"
+Creates vanity URLS for ACM at UCLA with the root URL "http://links.uclaacm.com/"
 
 It is a server-side site, using Flask + SQLite3.
 
@@ -11,6 +11,11 @@ Activate your virtual environment if you'd like to use it.
 Install all the libraries:
 ```shell
 $ pip install -r requirements.txt
+```
+
+Although intended for SQLite3, the production build uses Postgres. So, one of the libraries is a Postgres wrapper (psycopg2). It requires an external program to be installed: `libpq-dev`
+```shell
+$ sudo apt-get install libpq-dev
 ```
 
 Add the environment variables in `.env` (make this yourself if it's not in your directory):
