@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Most Popular URLs</h1>
+<ul class="container">
+  <div id="title">Vanity</div>
+  <div id="title">URL</div>
+  <div id="title">Visits</div>
+  {% for link in links %}
+  <div class="item">{{ link.vanity }}</div>
+  <div class="item">{{ link.url }}</div>
+  <div class="item">{{ link.visit_count }}</div>
+  {% endfor %}
+</ul>
+{% endblock %}

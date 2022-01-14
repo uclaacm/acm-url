@@ -84,3 +84,8 @@ def vanity(vanity):
     
     # return redirect
     return redirect(entry.url, code=302)
+
+@app.route('/all')
+def all():
+    links = URL.query.order_by(URL.visit_count.desc()).all()
+    return render_template('links.html', links=links)
