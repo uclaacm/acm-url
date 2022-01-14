@@ -117,7 +117,8 @@ form input[type="password"]:focus {
 }
 
 form input[type="submit"],
-button {
+button,
+a.nav {
   border-radius: 5px;
   background-color: #333333;
   color: white;
@@ -196,6 +197,14 @@ form #vanity:focus + .line {
   padding: 0;
 }
 
+.item::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  list-style-type: none;
+}
+
 .item {
   white-space: nowrap;
   overflow-x: scroll;
@@ -203,33 +212,42 @@ form #vanity:focus + .line {
   padding-right: 2rem;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  min-width: 5rem;
 }
 
-.container > div:nth-child(6n + 1),
-.container > div:nth-child(6n + 2),
-.container > div:nth-child(6n + 3) {
+li:nth-child(3n + 1),
+li:nth-child(3n) {
+  overflow-x: clip;
+}
+
+li:nth-child(6n + 1),
+li:nth-child(6n + 2),
+li:nth-child(6n + 3) {
   background-color: #d3d3d3;
 }
 
-.container > div:nth-child(6n + 2),
-.container > div:nth-child(6n + 3),
-.container > div:nth-child(6n + 5),
-.container > div:nth-child(6n + 6) {
+li:nth-child(6n + 2),
+li:nth-child(6n + 3),
+li:nth-child(6n + 5),
+li:nth-child(6n + 6) {
   padding-left: 2rem;
   border-left: 2px solid #b3b3b3;
 }
 
-#title {
+li.title {
   position: relative;
   padding-left: 2rem;
+  padding-right: 2rem;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
   background-color: #ffffff;
   border-bottom: 2px solid #b3b3b3;
 }
 
-#title:before,
-#title:after {
+.title:before,
+.title:after {
   content: "";
   position: absolute;
   background-color: #ffffff;
@@ -238,10 +256,18 @@ form #vanity:focus + .line {
   bottom: -0.4rem;
 }
 
-#title:before {
+.title:before {
   left: 0;
 }
 
-#title:after {
+.title:after {
   right: 0;
+}
+
+.flex-container {
+  width: 100vw;
+  position: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
