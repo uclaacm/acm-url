@@ -117,8 +117,7 @@ form input[type="password"]:focus {
 }
 
 form input[type="submit"],
-button,
-a.nav {
+button {
   border-radius: 5px;
   background-color: #333333;
   color: white;
@@ -192,6 +191,7 @@ form #vanity:focus + .line {
 }
 
 .container {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   padding: 0;
@@ -214,11 +214,10 @@ li {
   padding-bottom: 0.8rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  min-width: 5rem;
 }
 
-li:nth-child(3n + 1),
-li:nth-child(3n) {
+li:nth-child(3n),
+li:nth-child(3n + 1) {
   overflow-x: clip;
 }
 
@@ -228,11 +227,8 @@ li:nth-child(6n + 3) {
   background-color: #d3d3d3;
 }
 
-li:nth-child(6n + 2),
-li:nth-child(6n + 3),
-li:nth-child(6n + 5),
-li:nth-child(6n + 6) {
-  padding-left: 2rem;
+li:nth-child(3n),
+li:nth-child(3n + 2) {
   border-left: 2px solid #b3b3b3;
 }
 
@@ -265,9 +261,10 @@ li.title {
 }
 
 .flex-container {
-  width: 100vw;
+  width: 100%;
   position: center;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }

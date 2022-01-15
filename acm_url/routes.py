@@ -4,7 +4,7 @@ import string
 import secrets
 import re
 import os
-from acm_url.forms import CreateForm, PasswordForm
+from acm_url.forms import CreateForm, PasswordForm, NavForm
 from werkzeug.security import check_password_hash
 from acm_url.schema import URL
 from sqlalchemy import func
@@ -85,10 +85,16 @@ def vanity(vanity):
     # return redirect
     return redirect(entry.url, code=302)
 
-@app.route('/all')
+@app.route('/all', methods=('GET', 'POST'))
 def all():
     page = request.args.get('page', 1, type=int)
     links = URL.query.order_by(URL.visit_count.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
     next_url = url_for('all', page=links.next_num) if links.has_next else None
     prev_url = url_for('all', page=links.prev_num) if links.has_prev else None
-    return render_template('links.html', links=links.items, next_url=next_url, prev_url=prev_url)
+    form = NavForm()
+    if form.validate_on_submit():
+        if (request.form.get('submit') == 'Next'):
+            return redirect(next_url)
+        elif (request.form.get('submit') == 'Prev'):
+            return redirect(prev_url)
+    return render_template('links.html', links=links.items,next_url=next_url, prev_url=prev_url, form=form)
