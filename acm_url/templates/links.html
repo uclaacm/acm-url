@@ -11,11 +11,11 @@
   {% endfor %}
 </ul>
 {% if prev_url or next_url %}
-<form action="" method="POST" class="flex-container">
-  {{ form.hidden_tag() }} {% if prev_url %}
-  <p>{{ form.submit(value="Prev")}}</p>
+<div class="flex-container">
+  {% if prev_url %}
+  <a class="prev" href="{{ prev_url }}">Prev</a>
   {% endif %} {% if next_url %}
-  <p>{{ form.submit(value="Next")}}</p>
+  <a class="next" href="{{ next_url }}">Next</a>
   {% endif %}
-</form>
+</div>
 {% endif %} {% endblock %}

@@ -117,7 +117,9 @@ form input[type="password"]:focus {
 }
 
 form input[type="submit"],
-button {
+button,
+a.prev,
+a.next {
   border-radius: 5px;
   background-color: #333333;
   color: white;
@@ -261,10 +263,17 @@ li.title {
 }
 
 .flex-container {
-  width: 100%;
-  position: center;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+a.prev {
+  margin-right: auto;
+}
+
+a.next {
+  margin-left: auto;
 }

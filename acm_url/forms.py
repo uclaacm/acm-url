@@ -10,7 +10,3 @@ class CreateForm(FlaskForm):
 class PasswordForm(FlaskForm):
   password = PasswordField('Password', validators=[InputRequired(message="You must submit the password to create an URL.")])
   submit = SubmitField('Submit')
-  
-class NavForm(FlaskForm):
-  submit = SubmitField('Prev')
-  submit = SubmitField('Next')
