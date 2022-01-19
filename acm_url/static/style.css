@@ -1,16 +1,12 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: "Poppins", sans-serif;
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins', sans-serif;
 }
 
 h1 {
@@ -18,28 +14,28 @@ h1 {
 }
 
 nav {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  height: 70px;
-  width: 100%;
-  background: white;
-  box-shadow: 0px 0px 4px #e2e2e2;
-  color: #333333;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	height: 70px;
+	width: 100%;
+	background: white;
+	box-shadow: 0px 0px 4px #E2E2E2;
+	color: #333333;
 }
 
 #navbar {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  height: 70px;
-  width: 100%;
-  background: white;
-  box-shadow: 0px 0px 4px #e2e2e2;
-  font-family: "Poppins", "Helvetica Neue", "Helvetica", sans-serif;
-  color: #333333;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	height: 70px;
+	width: 100%;
+	background: white;
+	box-shadow: 0px 0px 4px #E2E2E2;
+	font-family: 'Poppins', 'Helvetica Neue', 'Helvetica', sans-serif;
+	color: #333333;
 }
 
 #navbar-inner {
@@ -61,13 +57,12 @@ nav {
   margin-top: 5px;
 }
 
-a,
-a:visited {
+a, a:visited {
   color: inherit;
 }
 
 .content {
-  margin-top: 70px;
+	margin-top: 70px; 
   flex: 1 0 auto;
   flex-direction: column;
   align-items: center;
@@ -92,20 +87,18 @@ form label {
   color: #707070;
 }
 
-form input[type="text"],
-form input[type="password"] {
+form input[type="text"], form input[type="password"] {
   margin: 0 0 1rem;
   border-bottom: #c5c5c5 2px solid;
   border-top: none;
   border-right: none;
   border-left: none;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   width: 500px;
 }
 
-form input[type="text"]:focus,
-form input[type="password"]:focus {
+form input[type="text"]:focus, form input[type="password"]:focus {
   border-bottom: #c5c5c5 2px solid;
   border-top: none;
   border-right: none;
@@ -116,10 +109,7 @@ form input[type="password"]:focus {
   width: 100%;
 }
 
-form input[type="submit"],
-button,
-a.prev,
-a.next {
+form input[type="submit"], button {
   border-radius: 5px;
   background-color: #333333;
   color: white;
@@ -131,8 +121,7 @@ a.next {
   border: none;
 }
 
-form input[type="submit"]:hover,
-button:hover {
+form input[type="submit"]:hover, button:hover {
   background-color: #555555;
 }
 
@@ -155,7 +144,7 @@ button:hover {
 }
 
 .line {
-  height: 2px;
+  height: 2px; 
   width: 1px;
   background-color: #c5c5c5;
   position: relative;
@@ -165,18 +154,16 @@ button:hover {
   float: left;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus {
   outline: none;
 }
 
-form input[type="text"]:focus + .line,
-form input[type="password"]:focus + .line {
+form input[type="text"]:focus+.line, form input[type="password"]:focus+.line {
   width: 503px;
   background-color: #1e6cff;
 }
 
-form #vanity:focus + .line {
+form #vanity:focus+.line {
   width: 298px;
   background-color: #1e6cff;
 }
@@ -190,92 +177,4 @@ form #vanity:focus + .line {
 
 #clipboard {
   width: 150px;
-}
-
-.container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  padding: 0;
-}
-
-.item::-webkit-scrollbar {
-  display: none;
-}
-
-li {
-  list-style-type: none;
-}
-
-.item {
-  white-space: nowrap;
-  overflow-x: scroll;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-li:nth-child(3n),
-li:nth-child(3n + 1) {
-  overflow-x: clip;
-}
-
-li:nth-child(6n + 1),
-li:nth-child(6n + 2),
-li:nth-child(6n + 3) {
-  background-color: #d3d3d3;
-}
-
-li:nth-child(3n),
-li:nth-child(3n + 2) {
-  border-left: 2px solid #b3b3b3;
-}
-
-li.title {
-  position: relative;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
-  background-color: #ffffff;
-  border-bottom: 2px solid #b3b3b3;
-}
-
-.title:before,
-.title:after {
-  content: "";
-  position: absolute;
-  background-color: #ffffff;
-  height: 0.4rem;
-  width: 0.75rem;
-  bottom: -0.4rem;
-}
-
-.title:before {
-  left: 0;
-}
-
-.title:after {
-  right: 0;
-}
-
-.flex-container {
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-a.prev {
-  margin-right: auto;
-  text-decoration: none;
-}
-
-a.next {
-  margin-left: auto;
-  text-decoration: none;
 }
