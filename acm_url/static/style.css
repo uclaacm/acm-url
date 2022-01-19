@@ -272,8 +272,10 @@ li.title {
 
 a.prev {
   margin-right: auto;
+  text-decoration: none;
 }
 
 a.next {
   margin-left: auto;
+  text-decoration: none;
 }
