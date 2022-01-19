@@ -16,5 +16,3 @@ build/
 .flaskenv
 
 *.sqlite
-
-.DS_Store

@@ -84,11 +84,3 @@ def vanity(vanity):
     
     # return redirect
     return redirect(entry.url, code=302)
-
-@app.route('/all', methods=('GET', 'POST'))
-def all():
-    page = request.args.get('page', 1, type=int)
-    links = URL.query.order_by(URL.visit_count.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('all', page=links.next_num) if links.has_next else None
-    prev_url = url_for('all', page=links.prev_num) if links.has_prev else None
-    return render_template('links.html', links=links.items,next_url=next_url, prev_url=prev_url)
