@@ -5,6 +5,8 @@ Creates vanity URLS for ACM at UCLA with the root URL "http://links.uclaacm.com/
 It is a server-side site, using Flask + SQLite3.
 
 ## Run Locally
+If you're on Windows, use WSL to run everything.
+
 ### Setup
 Activate your virtual environment if you'd like to use it.
 
