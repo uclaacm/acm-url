@@ -94,7 +94,7 @@ def all():
     return render_template('links.html', links=links.items,next_url=next_url, prev_url=prev_url)
 
 # Endpoint for deleting a vanity url.
-@app.route('/delete/<vanity>')
+@app.route('/delete/<vanity>', methods=['POST'])
 def delete(vanity):
     entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
 
