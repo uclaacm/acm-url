@@ -93,6 +93,18 @@ def all():
     prev_url = url_for('all', page=links.prev_num) if links.has_prev else None
     return render_template('links.html', links=links.items,next_url=next_url, prev_url=prev_url)
 
+# Endpoint for deleting a vanity url.
+@app.route('/delete/<vanity>', methods=['POST'])
+def delete(vanity):
+    entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
+
+    if entry is None:
+        return render_template('404.html')
+
+    db.session.delete(entry)
+    db.session.commit()
+    return redirect(url_for('all'))
+
 @app.route('/edit', methods=['POST'])
 def edit():
     # Grab request data
