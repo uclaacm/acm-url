@@ -104,3 +104,22 @@ def delete(vanity):
     db.session.delete(entry)
     db.session.commit()
     return redirect(url_for('all'))
+
+@app.route('/edit', methods=['POST'])
+def edit():
+    # Grab request data
+    vanity = request.form['vanity']
+    url = request.form['url']
+
+    # Check if vanity exists
+    entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
+    if entry is None:
+        return f"No vanity found with name {vanity}", 404
+
+    # Update database
+    if not(url.startswith('http://') or url.startswith('https://')):
+        url = 'https://' + url
+    entry.url = url
+    db.session.commit()
+
+    return "Complete", 200
