@@ -56,7 +56,8 @@ def create():
                 vanity = ''.join(secrets.choice(string.ascii_lowercase + string.digits) for i in range(12))
                 old_entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
         else:
-            if vanity.lower() == 'create':
+            invalid_vanity = ['create', 'edit', 'delete', 'all', 'login', 'logout']
+            if vanity.lower() in invalid_vanity:
                 return render_template('url.html', form=create_form, error="You cannot use this short name. Please try again.")
             
             old_entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
@@ -110,6 +111,11 @@ def edit():
     # Grab request data
     vanity = request.form['vanity']
     url = request.form['url']
+
+    # Check if the vanity is valid
+    invalid_vanity = ['create', 'edit', 'delete', 'all', 'login', 'logout']
+    if vanity.lower() in invalid_vanity:
+        return f"You cannot use the short name {vanity}", 405
 
     # Check if vanity exists
     entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
