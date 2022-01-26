@@ -99,6 +99,11 @@ def all():
 def delete(vanity):
     entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
 
+    # Check if the vanity is valid
+    invalid_vanity = ['create', 'edit', 'delete', 'all', 'login', 'logout']
+    if vanity.lower() in invalid_vanity:
+        return f"You cannot delete the short name {vanity}", 405
+
     if entry is None:
         return render_template('404.html')
 
