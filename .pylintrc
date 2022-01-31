@@ -1,2 +1,2 @@
 [MASTER]
-ignore=migrations
+ignore-patterns=migrations/*.py
