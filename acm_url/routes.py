@@ -9,6 +9,9 @@ from werkzeug.security import check_password_hash
 from acm_url.schema import URL
 from sqlalchemy import func
 
+def is_avaliable(vanity):
+    return vanity.lower() in ['create', 'edit', 'delete', 'all', 'login', 'logout']
+
 # Default endpoint. If logged in, redirect to create. Otherwise, prompt them for password. 
 # If correct, redirect to create, otherwise, stay here.
 @app.route('/', methods=('GET', 'POST'))
@@ -56,8 +59,8 @@ def create():
                 vanity = ''.join(secrets.choice(string.ascii_lowercase + string.digits) for i in range(12))
                 old_entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
         else:
-            invalid_vanity = ['create', 'edit', 'delete', 'all', 'login', 'logout']
-            if vanity.lower() in invalid_vanity:
+            
+            if is_avaliable(vanity):
                 return render_template('url.html', form=create_form, error="You cannot use this short name. Please try again.")
             
             old_entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
@@ -100,8 +103,7 @@ def delete(vanity):
     entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
 
     # Check if the vanity is valid
-    invalid_vanity = ['create', 'edit', 'delete', 'all', 'login', 'logout']
-    if vanity.lower() in invalid_vanity:
+    if is_avaliable(vanity):
         return f"You cannot delete the short name {vanity}", 405
 
     if entry is None:
@@ -118,8 +120,7 @@ def edit():
     url = request.form['url']
 
     # Check if the vanity is valid
-    invalid_vanity = ['create', 'edit', 'delete', 'all', 'login', 'logout']
-    if vanity.lower() in invalid_vanity:
+    if is_avaliable(vanity):
         return f"You cannot use the short name {vanity}", 405
 
     # Check if vanity exists
