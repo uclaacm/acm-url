@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Admin Console</h1>
+<div id="button-container" class="flex-container">
+  <button class="admin-button">Delete</button>
+  <button class="admin-button">New URL</button>
+</div>
+<ul class="admin-container">
+  <li class="title"><input type="checkbox" /></li>
+  <li class="title">Vanity</li>
+  <li class="title">URL</li>
+  <li class="title">Visits</li>
+  <li class="title"></li>
+
+  {% for link in links %}
+  <li class="item"><input type="checkbox" /></li>
+  <li class="item">{{ link.vanity }}</li>
+  <li class="item"><a href="{{ link.url }}">{{ link.url }}</a></li>
+  <li class="item">{{ link.visit_count }}</li>
+  <li class="item"><button class="admin-button">Edit</button></li>
+  {% endfor %}
+</ul>
+{% if prev_url or next_url %}
+<div class="flex-container">
+  {% if prev_url %}
+  <a class="prev" href="{{ prev_url }}">Prev</a>
+  {% endif %} {% if next_url %}
+  <a class="next" href="{{ next_url }}">Next</a>
+  {% endif %}
+</div>
+{% endif %} {% endblock %}
