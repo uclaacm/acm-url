@@ -59,7 +59,6 @@ def create():
                 vanity = ''.join(secrets.choice(string.ascii_lowercase + string.digits) for i in range(12))
                 old_entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
         else:
-            
             if is_unavaliable(vanity):
                 return render_template('url.html', form=create_form, error="You cannot use this short name. Please try again.")
             
