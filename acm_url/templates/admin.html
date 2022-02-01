@@ -27,30 +27,28 @@
     let selectAll = document.getElementById("selectAll");
 
     checkboxes.forEach((checkbox) => {
-      if (checkbox.id !== "selectAll") {
-        checkbox.addEventListener("click", function () {
-          let checked = document.querySelectorAll(
-            'input[type="checkbox"]:checked:not(#selectAll)'
-          );
-          if (this.checked) {
-            if (checked.length !== checkboxes.length) {
-              selectAll.indeterminate = true;
-              selectAll.checked = true;
-            } else {
-              selectAll.indeterminate = false;
-              selectAll.checked = true;
-            }
+      checkbox.addEventListener("click", function () {
+        let checked = document.querySelectorAll(
+          'input[type="checkbox"]:checked:not(#selectAll)'
+        );
+        if (this.checked) {
+          if (checked.length !== checkboxes.length) {
+            selectAll.indeterminate = true;
+            selectAll.checked = true;
           } else {
-            if (checked.length === 0) {
-              selectAll.indeterminate = false;
-              selectAll.checked = false;
-            } else if (checked.length !== checkboxes.length) {
-              selectAll.indeterminate = true;
-              selectAll.checked = true;
-            }
+            selectAll.indeterminate = false;
+            selectAll.checked = true;
           }
-        });
-      }
+        } else {
+          if (checked.length === 0) {
+            selectAll.indeterminate = false;
+            selectAll.checked = false;
+          } else if (checked.length !== checkboxes.length) {
+            selectAll.indeterminate = true;
+            selectAll.checked = true;
+          }
+        }
+      });
     });
 
     selectAll.addEventListener("click", function (e) {
