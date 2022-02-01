@@ -5,7 +5,7 @@
   <button class="admin-button">New URL</button>
 </div>
 <ul class="admin-container">
-  <li class="title"><input type="checkbox" /></li>
+  <li class="title"><input id="selectAll" type="checkbox" /></li>
   <li class="title">Vanity</li>
   <li class="title">URL</li>
   <li class="title">Visits</li>
@@ -19,6 +19,68 @@
   <li class="item"><button class="admin-button">Edit</button></li>
   {% endfor %}
 </ul>
+<script>
+  window.onload = function () {
+    let checkboxes = document.querySelectorAll(
+      'input[type="checkbox"]:not(#selectAll)'
+    );
+    let selectAll = document.getElementById("selectAll");
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.id !== "selectAll") {
+        checkbox.addEventListener("click", function () {
+          let checked = document.querySelectorAll(
+            'input[type="checkbox"]:checked:not(#selectAll)'
+          );
+          if (this.checked) {
+            if (checked.length !== checkboxes.length) {
+              selectAll.indeterminate = true;
+              selectAll.checked = true;
+            } else {
+              selectAll.indeterminate = false;
+              selectAll.checked = true;
+            }
+          } else {
+            if (checked.length === 0) {
+              selectAll.indeterminate = false;
+              selectAll.checked = false;
+            } else if (checked.length !== checkboxes.length) {
+              selectAll.indeterminate = true;
+              selectAll.checked = true;
+            }
+          }
+        });
+      }
+    });
+
+    selectAll.addEventListener("click", function (e) {
+      if (selectAll.indeterminate || selectAll.checked) {
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = true;
+        });
+        selectAll.indeterminate = false;
+        selectAll.checked = true;
+      } else if (!selectAll.indeterminate && !selectAll.checked) {
+        let checked = document.querySelectorAll(
+          'input[type="checkbox"]:checked:not(#selectAll)'
+        );
+        if (checked.length !== checkboxes.length) {
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked = true;
+          });
+          selectAll.indeterminate = false;
+          selectAll.checked = true;
+        } else {
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+          });
+          selectAll.indeterminate = false;
+          selectAll.checked = false;
+        }
+      }
+    });
+  };
+</script>
 {% if prev_url or next_url %}
 <div class="flex-container">
   {% if prev_url %}

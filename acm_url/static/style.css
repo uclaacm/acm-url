@@ -287,7 +287,10 @@ a.next {
 
 .admin-button {
   background-color: #555555;
-  width: 100px;
+  width: 3.7vw;
+  padding: 0;
+  height: 3.4vh;
+  margin: 0;
 }
 
 .admin-container {
