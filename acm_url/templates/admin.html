@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends "base.html" %} {% block content %}
 <h1>Admin Console</h1>
 <div id="button-container" class="flex-container">
   <button class="admin-button">Delete</button>
@@ -22,14 +22,14 @@
 <script>
   window.onload = function () {
     let checkboxes = document.querySelectorAll(
-      'input[type="checkbox"]:not(#selectAll)'
+      "input[type='checkbox']:not(#selectAll)"
     );
     let selectAll = document.getElementById("selectAll");
 
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("click", function () {
         let checked = document.querySelectorAll(
-          'input[type="checkbox"]:checked:not(#selectAll)'
+          "input[type='checkbox']:checked:not(#selectAll)"
         );
         if (this.checked) {
           if (checked.length !== checkboxes.length) {
@@ -60,7 +60,7 @@
         selectAll.checked = true;
       } else if (!selectAll.indeterminate && !selectAll.checked) {
         let checked = document.querySelectorAll(
-          'input[type="checkbox"]:checked:not(#selectAll)'
+          "input[type='checkbox']:checked:not(#selectAll)"
         );
         if (checked.length !== checkboxes.length) {
           checkboxes.forEach((checkbox) => {
