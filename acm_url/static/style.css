@@ -315,6 +315,10 @@ a.next {
   border-bottom: 2px solid #b3b3b3;
 }
 
+.buttonItem {
+  text-align: center;
+}
+
 .admin-container li:nth-child(10n + 11),
 .admin-container li:nth-child(10n + 12),
 .admin-container li:nth-child(10n + 13),
