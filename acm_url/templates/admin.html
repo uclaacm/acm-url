@@ -31,22 +31,12 @@
         let checked = document.querySelectorAll(
           "input[type='checkbox']:checked:not(#selectAll)"
         );
-        if (this.checked) {
-          if (checked.length !== checkboxes.length) {
-            selectAll.indeterminate = true;
-            selectAll.checked = true;
-          } else {
-            selectAll.indeterminate = false;
-            selectAll.checked = true;
-          }
-        } else {
-          if (checked.length === 0) {
-            selectAll.indeterminate = false;
-            selectAll.checked = false;
-          } else if (checked.length !== checkboxes.length) {
-            selectAll.indeterminate = true;
-            selectAll.checked = true;
-          }
+        if (checked.length === 0) {
+          selectAll.indeterminate = false;
+          selectAll.checked = false;
+        } else if (checked.length !== checkboxes.length) {
+          selectAll.indeterminate = true;
+          selectAll.checked = false;
         }
       });
     });
@@ -58,23 +48,12 @@
         });
         selectAll.indeterminate = false;
         selectAll.checked = true;
-      } else if (!selectAll.indeterminate && !selectAll.checked) {
-        let checked = document.querySelectorAll(
-          "input[type='checkbox']:checked:not(#selectAll)"
-        );
-        if (checked.length !== checkboxes.length) {
-          checkboxes.forEach((checkbox) => {
-            checkbox.checked = true;
-          });
-          selectAll.indeterminate = false;
-          selectAll.checked = true;
-        } else {
-          checkboxes.forEach((checkbox) => {
-            checkbox.checked = false;
-          });
-          selectAll.indeterminate = false;
-          selectAll.checked = false;
-        }
+      } else if (!selectAll.checked) {
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+        selectAll.indeterminate = false;
+        selectAll.checked = false;
       }
     });
   };
