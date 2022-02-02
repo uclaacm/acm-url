@@ -42,19 +42,12 @@
     });
 
     selectAll.addEventListener("click", function (e) {
-      if (selectAll.indeterminate || selectAll.checked) {
-        checkboxes.forEach((checkbox) => {
-          checkbox.checked = true;
-        });
-        selectAll.indeterminate = false;
-        selectAll.checked = true;
-      } else if (!selectAll.checked) {
-        checkboxes.forEach((checkbox) => {
-          checkbox.checked = false;
-        });
-        selectAll.indeterminate = false;
-        selectAll.checked = false;
-      }
+      let checkAll = selectAll.indeterminate || selectAll.checked;
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = checkAll;
+      });
+      selectAll.indeterminate = false;
+      selectAll.checked = checkAll;
     });
   };
 </script>
