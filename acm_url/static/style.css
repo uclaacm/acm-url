@@ -281,16 +281,19 @@ a.next {
 }
 
 #button-container {
-  justify-content: space-between;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 7fr 1fr;
+  padding: 0;
 }
 
 .admin-button {
   background-color: #555555;
-  width: 3.7vw;
+  width: 3.8rem;
   padding: 0;
-  height: 3.4vh;
+  height: 1.7rem;
   margin: 0;
+  font-size: 0.8rem;
 }
 
 .admin-container {
@@ -315,8 +318,26 @@ a.next {
   border-bottom: 2px solid #b3b3b3;
 }
 
-.buttonItem {
+.centerText {
   text-align: center;
+}
+
+.centerContent {
+  position: relative;
+}
+
+.centerContent > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttonWrapper {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
 }
 
 .admin-container li:nth-child(10n + 11),

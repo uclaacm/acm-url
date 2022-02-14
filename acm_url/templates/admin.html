@@ -1,22 +1,27 @@
 {% extends "base.html" %} {% block content %}
 <h1>Admin Console</h1>
-<div id="button-container" class="flex-container">
-  <button class="admin-button">Delete</button>
-  <button class="admin-button">New URL</button>
+<div id="button-container">
+  <div class="buttonWrapper centerContent">
+    <button class="admin-button">Delete</button>
+  </div>
+  <div></div>
+  <div class="buttonWrapper centerContent">
+    <button class="admin-button">New URL</button>
+  </div>
 </div>
 <ul class="admin-container">
-  <li class="title"><input id="selectAll" type="checkbox" /></li>
+  <li class="title centerText"><input id="selectAll" type="checkbox" /></li>
   <li class="title">Vanity</li>
   <li class="title">URL</li>
   <li class="title">Visits</li>
   <li class="title"></li>
 
   {% for link in links %}
-  <li class="item"><input type="checkbox" /></li>
+  <li class="item centerText"><input type="checkbox" /></li>
   <li class="item">{{ link.vanity }}</li>
   <li class="item"><a href="{{ link.url }}">{{ link.url }}</a></li>
   <li class="item">{{ link.visit_count }}</li>
-  <li class="item buttonItem"><button class="admin-button">Edit</button></li>
+  <li class="item centerContent"><button class="admin-button">Edit</button></li>
   {% endfor %}
 </ul>
 <script>
