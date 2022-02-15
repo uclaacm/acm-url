@@ -16,5 +16,6 @@ build/
 .flaskenv
 
 *.sqlite
+*.sqlite-journal
 
 .DS_Store
