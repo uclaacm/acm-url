@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block content %}
+<h1>Admin Console</h1>
+<div id="button-container">
+  <div class="buttonWrapper centerContent">
+    <button class="admin-button">Delete</button>
+  </div>
+  <div></div>
+  <div class="buttonWrapper centerContent">
+    <button class="admin-button">New URL</button>
+  </div>
+</div>
+<ul class="admin-container">
+  <li class="title centerText"><input id="selectAll" type="checkbox" /></li>
+  <li class="title">Vanity</li>
+  <li class="title">URL</li>
+  <li class="title">Visits</li>
+  <li class="title"></li>
+
+  {% for link in links %}
+  <li class="item centerText"><input type="checkbox" /></li>
+  <li class="item">{{ link.vanity }}</li>
+  <li class="item"><a href="{{ link.url }}">{{ link.url }}</a></li>
+  <li class="item">{{ link.visit_count }}</li>
+  <li class="item centerContent"><button class="admin-button">Edit</button></li>
+  {% endfor %}
+</ul>
+<script>
+  window.onload = function () {
+    let checkboxes = document.querySelectorAll(
+      "input[type='checkbox']:not(#selectAll)"
+    );
+    let selectAll = document.getElementById("selectAll");
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", function () {
+        let checked = document.querySelectorAll(
+          "input[type='checkbox']:checked:not(#selectAll)"
+        );
+        if (checked.length === 0) {
+          selectAll.indeterminate = false;
+          selectAll.checked = false;
+        } else if (checked.length !== checkboxes.length) {
+          selectAll.indeterminate = true;
+          selectAll.checked = false;
+        }
+      });
+    });
+
+    selectAll.addEventListener("click", function (e) {
+      let checkAll = selectAll.indeterminate || selectAll.checked;
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = checkAll;
+      });
+      selectAll.indeterminate = false;
+      selectAll.checked = checkAll;
+    });
+  };
+</script>
+{% if prev_url or next_url %}
+<div class="flex-container">
+  {% if prev_url %}
+  <a class="prev" href="{{ prev_url }}">Prev</a>
+  {% endif %} {% if next_url %}
+  <a class="next" href="{{ next_url }}">Next</a>
+  {% endif %}
+</div>
+{% endif %} {% endblock %}

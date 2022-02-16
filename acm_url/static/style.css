@@ -279,3 +279,83 @@ a.next {
   margin-left: auto;
   text-decoration: none;
 }
+
+#button-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 7fr 1fr;
+  padding: 0;
+}
+
+.admin-button {
+  background-color: #555555;
+  width: 3.8rem;
+  padding: 0;
+  height: 1.7rem;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.admin-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 4fr 1fr 1fr;
+  padding: 0;
+}
+
+.admin-container li {
+  background-color: initial;
+  border: initial;
+}
+
+.admin-container li.title {
+  position: relative;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  background-color: #ffffff;
+  border-bottom: 2px solid #b3b3b3;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.centerContent {
+  position: relative;
+}
+
+.centerContent > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttonWrapper {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.admin-container li:nth-child(10n + 11),
+.admin-container li:nth-child(10n + 12),
+.admin-container li:nth-child(10n + 13),
+.admin-container li:nth-child(10n + 14),
+.admin-container li:nth-child(10n + 15) {
+  background-color: #d3d3d3;
+}
+
+.admin-container li:nth-child(5n),
+.admin-container li:nth-child(5n + 2),
+.admin-container li:nth-child(5n + 3),
+.admin-container li:nth-child(5n + 4) {
+  border-left: 2px solid #b3b3b3;
+}
+
+.admin-container li:nth-child(5n + 2),
+.admin-container li:nth-child(5n + 3) {
+  overflow-x: clip;
+}
