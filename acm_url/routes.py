@@ -114,19 +114,21 @@ def delete(vanity):
 
 @app.route('/edit', methods=['GET','POST'])
 def edit():
-    edit_form = EditForm()
+    args = request.args
+    vanity = args.get("vanity")
 
+    # Check if the vanity is valid
+    if vanity is None or is_unavaliable(vanity):
+        return render_template("404.html")
+    # Check if vanity exists
+    entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
+    if entry is None:
+        return render_template('404.html')
+
+    edit_form = EditForm()
     if edit_form.validate_on_submit():
         vanity = edit_form.vanity.data
         url = edit_form.url.data
-
-        # Check if the vanity is valid
-        if is_unavaliable(vanity):
-            return render_template("404.html")
-        # Check if vanity exists
-        entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
-        if entry is None:
-            return render_template('404.html')
 
         # Update database
         if not(url.startswith('http://') or url.startswith('https://')):
@@ -135,4 +137,4 @@ def edit():
         db.session.commit()
         return redirect(url_for('all'))
 
-    return render_template('edit.html', form=edit_form)
+    return render_template('edit.html', form=edit_form, vanity=vanity)
