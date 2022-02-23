@@ -4,7 +4,7 @@ import string
 import secrets
 import re
 import os
-from acm_url.forms import CreateForm, PasswordForm
+from acm_url.forms import CreateForm, PasswordForm, EditForm
 from werkzeug.security import check_password_hash
 from acm_url.schema import URL
 from sqlalchemy import func
@@ -112,28 +112,31 @@ def delete(vanity):
     db.session.commit()
     return redirect(url_for('all'))
 
-@app.route('/edit', methods=['POST'])
+@app.route('/edit', methods=['GET','POST'])
 def edit():
-    # Grab request data
-    vanity = request.form['vanity']
-    url = request.form['url']
+    args = request.args
+    vanity = args.get("vanity")
 
     # Check if the vanity is valid
-    if is_unavaliable(vanity):
-        return f"You cannot use the short name {vanity}", 405
-
+    if vanity is None or is_unavaliable(vanity):
+        return render_template("404.html")
     # Check if vanity exists
     entry = URL.query.filter(func.lower(URL.vanity) == func.lower(vanity)).first()
     if entry is None:
-        return f"No vanity found with name {vanity}", 404
+        return render_template('404.html')
 
-    # Update database
-    if not(url.startswith('http://') or url.startswith('https://')):
-        url = 'https://' + url
-    entry.url = url
-    db.session.commit()
+    edit_form = EditForm()
+    if edit_form.validate_on_submit():
+        url = edit_form.url.data
 
-    return "Complete", 200
+        # Update database
+        if not(url.startswith('http://') or url.startswith('https://')):
+            url = 'https://' + url
+        entry.url = url
+        db.session.commit()
+        return redirect(url_for('all'))
+
+    return render_template('edit.html', form=edit_form, vanity=vanity, url=entry.url)
 
 
 @app.route('/admin', methods=('GET', 'POST'))

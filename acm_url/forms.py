@@ -7,6 +7,10 @@ class CreateForm(FlaskForm):
   url = StringField('Enter long URL to make short', validators=[DataRequired(message="A URL was not entered.")])
   submit = SubmitField('Make URL')
 
+class EditForm(FlaskForm):
+  url = StringField('Enter new URL for this vanity', validators=[DataRequired(message="A URL was not entered.")])
+  submit = SubmitField('Edit URL')
+
 class PasswordForm(FlaskForm):
   password = PasswordField('Password', validators=[InputRequired(message="You must submit the password to create an URL.")])
   submit = SubmitField('Submit')
