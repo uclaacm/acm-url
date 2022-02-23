@@ -92,6 +92,11 @@ form label {
   color: #707070;
 }
 
+.edit {
+  display:inline-block;
+}
+
+.edit,
 form input[type="text"],
 form input[type="password"] {
   margin: 0 0 1rem;

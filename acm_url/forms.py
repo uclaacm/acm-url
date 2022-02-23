@@ -8,7 +8,6 @@ class CreateForm(FlaskForm):
   submit = SubmitField('Make URL')
 
 class EditForm(FlaskForm):
-  vanity = StringField('Custom vanity', validators=[Regexp('^[\w-]+$', message="Short name must only containt letters, digits, and dashes.")])
   url = StringField('Enter new URL for this vanity', validators=[DataRequired(message="A URL was not entered.")])
   submit = SubmitField('Edit URL')
 

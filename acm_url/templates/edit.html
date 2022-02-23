@@ -6,14 +6,12 @@
   <label for="vanity">Custom vanity</label>
   <div class="vanity-input">
     <p>https://links.uclaacm.com/</p>
-    {{ form.vanity(maxlength=100, value=vanity, readonly=true) }}
+    <div id="vanity" class="edit">{{ vanity }}</div>
     <div class="line"></div>
   </div>
-  {% for error in form.vanity.errors %}
     <p class="error">{{ error }}</p>
-  {% endfor %}
   <label for="url">Enter new URL for this vanity</label>
-  {{ form.url() }}
+  {{ form.url(value=url) }}
   <div class="line"></div>
   {% for error in form.url.errors %}
     <p class="error">{{ error }}</p>

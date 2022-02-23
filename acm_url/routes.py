@@ -127,7 +127,6 @@ def edit():
 
     edit_form = EditForm()
     if edit_form.validate_on_submit():
-        vanity = edit_form.vanity.data
         url = edit_form.url.data
 
         # Update database
@@ -137,7 +136,7 @@ def edit():
         db.session.commit()
         return redirect(url_for('all'))
 
-    return render_template('edit.html', form=edit_form, vanity=vanity)
+    return render_template('edit.html', form=edit_form, vanity=vanity, url=entry.url)
 
 
 @app.route('/admin', methods=('GET', 'POST'))
