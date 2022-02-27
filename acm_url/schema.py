@@ -13,3 +13,4 @@ class URL(db.Model):
 
   def __repr__(self):
     return '<URL {}>'.format(self.vanity)
+    
