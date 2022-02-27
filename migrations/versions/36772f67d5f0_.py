@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('url', sa.Text(), nullable=False),
     sa.Column('created', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
     sa.Column('visit_count', sa.Integer(), nullable=False),
+    sa.Column("last_visited", sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_URL_vanity'), 'URL', ['vanity'], unique=True)

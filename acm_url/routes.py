@@ -84,7 +84,6 @@ def vanity(vanity):
         return render_template('404.html')
 
     entry.last_visited = datetime.timestamp(datetime.now())
-
     entry.visit_count = entry.visit_count + 1
     db.session.commit()
     
