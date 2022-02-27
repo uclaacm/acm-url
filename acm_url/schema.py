@@ -9,6 +9,7 @@ class URL(db.Model):
   url = db.Column(db.Text, nullable=False)
   created = db.Column(db.DateTime, server_default=func.now(), nullable=False)
   visit_count = db.Column(db.Integer, default=0, nullable=False)
+  last_visted = db.Column(db.DateTime, nullable=True)
 
   def __repr__(self):
     return '<URL {}>'.format(self.vanity)
