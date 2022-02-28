@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, render_template, request, url_for, redirect, session
 from acm_url import app, db
 import string
@@ -82,6 +83,7 @@ def vanity(vanity):
     if entry is None:
         return render_template('404.html')
 
+    entry.last_visited = datetime.now()
     entry.visit_count = entry.visit_count + 1
     db.session.commit()
     

@@ -1,6 +1,6 @@
 """empty message
 
-Revision ID: 36772f67d5f0
+Revision ID: ed69a26bebbe
 Revises: 
 Create Date: 2022-01-11 19:29:41.527717
 
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '36772f67d5f0'
+revision = 'ed69a26bebbe'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('url', sa.Text(), nullable=False),
     sa.Column('created', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
     sa.Column('visit_count', sa.Integer(), nullable=False),
+    sa.Column('last_visited', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_URL_vanity'), 'URL', ['vanity'], unique=True)
