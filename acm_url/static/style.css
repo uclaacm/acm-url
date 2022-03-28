@@ -301,7 +301,7 @@ a.next {
   font-size: 0.8rem;
 }
 
-.admin-container {
+.admin-container { 
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr 4fr 1fr 1fr;

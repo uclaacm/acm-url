@@ -14,6 +14,8 @@
   <li class="title">Vanity</li>
   <li class="title">URL</li>
   <li class="title">Visits</li>
+  <li class="title">Committee</li>
+  <li class="title">Creator</li>
   <li class="title"></li>
 
   {% for link in links %}
@@ -21,6 +23,8 @@
   <li class="item">{{ link.vanity }}</li>
   <li class="item"><a href="{{ link.url }}">{{ link.url }}</a></li>
   <li class="item">{{ link.visit_count }}</li>
+  <li class="item">{{ link.committee }}</li>
+  <li class="item">{{ link.poc }}</li>
   <li class="item centerContent"><button class="admin-button">Edit</button></li>
   {% endfor %}
 </ul>
@@ -54,6 +58,11 @@
       selectAll.indeterminate = false;
       selectAll.checked = checkAll;
     });
+
+    let create = document.querySelector("#button-container > div:nth-child(3) > button")
+    create.addEventListener("click", function (f) {
+      window.location.href = '/create';
+    })
   };
 </script>
 {% if prev_url or next_url %}
@@ -64,4 +73,7 @@
   <a class="next" href="{{ next_url }}">Next</a>
   {% endif %}
 </div>
+<<<<<<< Updated upstream
 {% endif %} {% endblock %}
+=======
+>>>>>>> Stashed changes

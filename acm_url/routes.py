@@ -14,6 +14,11 @@ def is_unavaliable(vanity):
 
 # Default endpoint. If logged in, redirect to create. Otherwise, prompt them for password. 
 # If correct, redirect to create, otherwise, stay here.
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
 @app.route('/', methods=('GET', 'POST'))
 def index():
     user_id = session.get('user_id')
@@ -47,7 +52,8 @@ def create():
     if create_form.validate_on_submit():
         vanity = create_form.vanity.data
         url = create_form.url.data
-
+        committee = create_form.committee.data
+        poc = create_form.poc.data
         if not(url.startswith('http://') or url.startswith('https://')):
             url = 'https://' + url
 
@@ -67,7 +73,7 @@ def create():
             if old_entry is not None:
                 return render_template('url.html', form=create_form, error="Short name already taken! Please try again.")
         
-        new_url = URL(vanity=vanity, url=url)
+        new_url = URL(vanity=vanity, url=url, committee=committee, poc=poc)
         db.session.add(new_url)
         db.session.commit()
         return render_template('success.html', url=request.url_root + vanity)
@@ -133,6 +139,8 @@ def edit():
         if not(url.startswith('http://') or url.startswith('https://')):
             url = 'https://' + url
         entry.url = url
+        entry.poc = edit_form.poc.data
+        entry.committee = edit_form.committee.data
         db.session.commit()
         return redirect(url_for('all'))
 
@@ -150,4 +158,3 @@ def admin():
     prev_url = url_for('all', page=links.prev_num) if links.has_prev else None
     return render_template('admin.html', links=links.items,next_url=next_url, prev_url=prev_url)
     
-

@@ -18,6 +18,27 @@
   {% for error in form.vanity.errors %}
     <p class="error">{{ error }}</p>
   {% endfor %}
+  <div class="row">
+    <div class="column">
+      <label for="poc">Enter your Name</label>
+      {{ form.poc() }}
+      <div class="line"></div>
+      {% for error in form.poc.errors %}
+      <p class="error">{{ error }}</p>
+      {% endfor %}
+    </div>
+    <div class="column"> 
+      <label for="committee">Committee:</label>
+      {{ form.committee() }}
+      <div class="line"></div>
+     {% for error in form.committee.errors %}
+     <p class="error">{{ error }}</p>
+      {% endfor %}
+    </div>
+  </div>
+    {% for error in form.url.errors %}
+    <p class="error">{{ error }}</p>
+  {% endfor %}
   {% if error %}
     <p class="error">{{ error }}</p>
   {% endif %}
