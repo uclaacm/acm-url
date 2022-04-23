@@ -10,8 +10,14 @@
     <div class="line"></div>
   </div>
     <p class="error">{{ error }}</p>
-  <label for="url">Enter new URL for this vanity</label>
+  <label for="url">Enter URL for this vanity</label>
   {{ form.url(value=url) }}
+  <div class="line"></div>
+  <label for="poc">Enter name for this vanity</label>
+  {{ form.poc() }}
+  <div class="line"></div>
+  <label for="committee">Enter committee for this vanity</label>
+  {{ form.committee() }}
   <div class="line"></div>
   {% for error in form.url.errors %}
     <p class="error">{{ error }}</p>

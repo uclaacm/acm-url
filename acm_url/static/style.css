@@ -200,7 +200,7 @@ form #vanity:focus + .line {
 .container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
   padding: 0;
 }
 
@@ -223,19 +223,25 @@ li {
   -ms-overflow-style: none;
 }
 
-li:nth-child(3n),
-li:nth-child(3n + 1) {
+li:nth-child(5n),
+li:nth-child(5n + 1) {
   overflow-x: clip;
 }
 
-li:nth-child(6n + 1),
-li:nth-child(6n + 2),
-li:nth-child(6n + 3) {
+li:nth-child(10n + 1),
+li:nth-child(10n + 2),
+li:nth-child(10n + 3), 
+li:nth-child(10n + 4),
+li:nth-child(10n + 5){
   background-color: #d3d3d3;
 }
 
-li:nth-child(3n),
-li:nth-child(3n + 2) {
+li:nth-child(5n),
+li:nth-child(5n + 2),
+li:nth-child(5n + 3),
+li:nth-child(5n + 4),
+li:nth-child(5n + 5)
+  {
   border-left: 2px solid #b3b3b3;
 }
 
@@ -304,7 +310,7 @@ a.next {
 .admin-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr 4fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 4fr 1fr 2fr 2fr 1fr;
   padding: 0;
 }
 
@@ -345,22 +351,41 @@ a.next {
   padding-bottom: 0.8rem;
 }
 
-.admin-container li:nth-child(10n + 11),
-.admin-container li:nth-child(10n + 12),
-.admin-container li:nth-child(10n + 13),
-.admin-container li:nth-child(10n + 14),
-.admin-container li:nth-child(10n + 15) {
+.admin-container li:nth-child(14n + 15),
+.admin-container li:nth-child(14n + 16),
+.admin-container li:nth-child(14n + 17),
+.admin-container li:nth-child(14n + 18),
+.admin-container li:nth-child(14n + 19),
+.admin-container li:nth-child(14n + 20),
+.admin-container li:nth-child(14n + 21){
   background-color: #d3d3d3;
 }
 
-.admin-container li:nth-child(5n),
-.admin-container li:nth-child(5n + 2),
-.admin-container li:nth-child(5n + 3),
-.admin-container li:nth-child(5n + 4) {
+.admin-container li:nth-child(7n),
+.admin-container li:nth-child(7n + 2),
+.admin-container li:nth-child(7n + 3),
+.admin-container li:nth-child(7n + 4),
+.admin-container li:nth-child(7n + 5),
+.admin-container li:nth-child(7n + 6){
   border-left: 2px solid #b3b3b3;
 }
 
 .admin-container li:nth-child(5n + 2),
-.admin-container li:nth-child(5n + 3) {
+.admin-container li:nth-child(5n + 3),
+.admin-container li:nth-child(5n + 6),{
   overflow-x: clip;
 }
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
